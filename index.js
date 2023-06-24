@@ -49,6 +49,7 @@ const render = () => {
     input.ariaLabel = "Text input with checkbox";
     input.value = name;
     input.style.textDecoration = done ? 'line-through' : 'none';
+    input.id = `${id}-${name}`;
 
     input.addEventListener('input', _ => {
       updateChecklistItem(id, input.value, checkbox.checked);
