@@ -1,6 +1,6 @@
 const key = "checklist-items";
 const objs = JSON.parse(window.localStorage.getItem(key) || "{}");
-let currentId = 0;
+let currentId = Math.max(Object.keys(objs)) || 0;
 
 const save = () => {
   window.localStorage.setItem(key, JSON.stringify(objs));
@@ -91,19 +91,11 @@ const render = () => {
 };
 
 const load = () => {
-  if (objs) {
-    try {
-      currentId = Math.max(Object.keys(objs));
-    } catch (ex) {
-      alert(`Failed to load saved checklist: ${ex}`);
-    }
-  }
-
   document.getElementById('form').addEventListener('submit', evt => {
     evt.preventDefault();
     evt.stopPropagation();
 
-    currentId += 1;
+    currentId = currentId + 1;
     objs[currentId] = {
       name: document.getElementById('new-item-name').value,
       done: document.getElementById('new-item-done').checked
