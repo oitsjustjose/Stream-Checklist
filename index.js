@@ -1,5 +1,5 @@
 const key = "checklist-items";
-const objs = JSON.parse(window.localStorage.getItem(key));
+const objs = JSON.parse(window.localStorage.getItem(key) || "{}");
 let currentId = 0;
 
 const save = () => {
